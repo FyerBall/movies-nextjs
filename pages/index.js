@@ -1,13 +1,10 @@
 import Head from "next/head";
-import Banner from "../components/Banner/Banner";
-import Header from "../components/Header/Header";
-import Hero from "../components/Hero/Hero";
 // api end point
 import server from "../utils/server";
+import Footer from "../components/Footer/index.js";
+import HomePageTemplate from "../Templates/HomePageTemplate.js";
 
 export default function Home(props) {
-  const { genres, movies } = props;
-
   return (
     <div className="">
       <Head>
@@ -17,55 +14,39 @@ export default function Home(props) {
       </Head>
 
       <main className="font-serif">
-        {/* nav */}
-        <Header genres={genres} />
-        {/* big poster */}
-        <Banner movies={movies} />
-        {/* list of movies */}
-        <Hero movies={movies} />
+        <HomePageTemplate {...props} />
       </main>
+      <Footer />
     </div>
   );
 }
 
-// getting genres
-async function getGenres() {
-  const req = await fetch(`https://api.themoviedb.org/3/${server.genres.url}`);
-  const data = await req.json();
-  return data;
+export async function fetchMovies() {
+  const req = await fetch(`${server.trending.url}`);
+  const movie = await req.json();
+  return movie;
+}
+export async function fetchUpcoming() {
+  const req = await fetch(`${server.upcoming.url}`);
+  const upcoming = await req.json();
+  return upcoming;
+}
+export async function fetchPeople() {
+  const req = await fetch(`${server.people.url}`);
+  const people = await req.json();
+  return people;
 }
 
-// getting trending
-async function getTrending() {
-  const req = await fetch(`https://api.themoviedb.org/3${server.trending.url}`);
-  const data = await req.json();
-  return data;
-}
-
-// calling above func. here  and getting all the data
-export const getServerSideProps = async (context) => {
-  // getting our queries -> ?genres=some random number that correspond with a genre
-  const genre = context.query.genres;
-
-  let results = await fetch(
-    `https://api.themoviedb.org/3${server.results.url}${genre}`
-  );
-
-  let movies = await results.json();
-
-  let trending = await getTrending();
-
-  const genres = await getGenres();
-
-  // if we haven't selected a genre movies will default to trending category/genre
-  if (!movies.results.length) {
-    movies = trending;
-  }
+export const getServerSideProps = async () => {
+  const movies = await fetchMovies();
+  const upcoming = await fetchUpcoming();
+  const people = await fetchPeople();
 
   return {
     props: {
-      genres,
       movies,
+      upcoming,
+      people,
     },
   };
 };
