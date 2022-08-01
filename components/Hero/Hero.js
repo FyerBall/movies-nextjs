@@ -1,57 +1,57 @@
 import Image from "next/image";
-
+import Link from "next/link.js";
+import { IMAGE_BASE } from "../../config/constant.js";
+import Rating from "../Movie/Rating.js";
+import Header from "../Nav/index.js";
+import Trailer from "../Trailer.js";
 function Hero({ movies }) {
-  console.log(movies);
-
-  const IMAGE_BASE = `https://image.tmdb.org/t/p/original/`;
-
   return (
-    // listing the movies
-    // ? it might be better to create a card comp. otherwise this will get too long
-    // ? having a comp. will styling the posters a lot easier
-    <div className="bg-gray-900 flex flex-wrap justify-center">
-      {movies.results.map((movie) => {
-        // getting what we might need from the result to display on the screen
-        const {
-          backdrop_path,
-          poster_path,
-          original_title,
-          title,
-          release_date,
-          vote_average,
-          id,
-        } = movie;
+    <>
+      <Header />
+      <div className="relative h-full ">
+        {movies.results
+          .map((movie) => {
+            const {
+              backdrop_path,
+              poster_path,
+              original_title,
+              title,
+              overview,
+              release_date,
+              vote_average,
+              id,
+            } = movie;
 
-        // this should be a reusable comp.
-        return (
-          <div key={id} className="flex flex-wrap cursor-pointer ">
-            <div className="mx-auto max-w-sm  w-72 h-full">
-              <div className="card flex flex-col justify-center  m-4  rounded-lg shadow-2xl">
-                <div className="">
-                  <Image
-                    width={320}
-                    height={380}
-                    layout="responsive"
-                    src={`${IMAGE_BASE}${backdrop_path || poster_path}`}
-                    alt={title || original_title}
-                    className=" object-cover rounded-lg"
-                  />
-                </div>
-                <div className="py-3">
-                  <p className="text-lg uppercase text-white font-bold">
+            return (
+              <div className="bg-blend-darken" key={id}>
+                <Image
+                  src={`${IMAGE_BASE}${backdrop_path || poster_path}`}
+                  alt={title}
+                  height={1080}
+                  width={1920}
+                  layout="responsive"
+                  className="absolute inset-0 h-full w-full object-contain"
+                  priority
+                />
+                {/* overlay */}
+                <div className="absolute inset-0 bg-gray-900 opacity-50" />
+
+                <div className="flex h-full items-start justify-center absolute w-1/3 p-8 text-white tracking-widest top-0 flex-col left-28 space-y-5 shadow">
+                  <p className="font-thin text-xs -mb-5">{release_date}</p>
+                  <h1 className="uppercase text-2xl md:text-6xl">
                     {original_title || title}
-                  </p>
-                  <p className="uppercase text-sm text-gray-400 mb-4 ">
-                    {release_date} <br />{" "}
-                    <span className="font-thin">{vote_average}</span>
-                  </p>
+                  </h1>
+                  <Rating rate={vote_average} variant="light" />
+                  <p className="">{overview}</p>
+
+                  <Trailer id={id} name={title} />
                 </div>
               </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
+            );
+          })
+          .splice(0, 1)}
+      </div>
+    </>
   );
 }
 
