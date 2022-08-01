@@ -16,7 +16,7 @@ function Trailer({ id }) {
       setTrailerId(findTrailer[0].key);
     }
     fetchMovies();
-  }, []);
+  }, [id]);
   return (
     <Link href={`https://www.youtube.com/watch?v=${trailerId}`} passHref>
       <a
