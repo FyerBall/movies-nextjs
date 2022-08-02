@@ -9,7 +9,7 @@ function Details({ movie }) {
         const { id, title, vote_average, release_date, overview } = m;
         return (
           <div
-            className="space-y-2 px-6 py-4 w-1/2 flex flex-col items-center mx-auto text-center"
+            className="space-y-2 flex px-6 py-4 flex-col items-center mx-auto text-center lg:w-1/2 "
             key={id}
           >
             <div className="flex items-center space-x-2">
