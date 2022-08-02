@@ -19,7 +19,10 @@ function MoviePoser({ movies }) {
 
     // this should be a reusable comp.
     return (
-      <div key={id} className="relative ">
+      <div
+        key={id}
+        className="relative transform transition duration-500 hover:scale-[1.01]"
+      >
         <div className="mx-auto max-w-sm  w-72 shadow-lg">
           <Image
             width={250}
@@ -56,7 +59,10 @@ function PeoplePoster({ people }) {
     .map((person) => {
       const { id, name, profile_path: profile } = person;
       return (
-        <div key={id} className="relative ">
+        <div
+          key={id}
+          className="relative transform transition duration-500 hover:scale-[1.01]"
+        >
           <div className="mx-auto max-w-sm  w-72 shadow-lg">
             <Image
               width={250}
@@ -88,7 +94,7 @@ function Poster({ movies, people, pageTitle }) {
           {pageTitle}
         </h2>
       </div>
-      <article className="flex scrollbar-hide w-full gap-20 overflow-auto h-[36rem]">
+      <article className="flex scrollbar-hide w-full gap-7 lg:gap-20 overflow-auto h-[36rem]">
         {/* {movies ? <MoviePoser /> : "People"} */}
         {movies && <MoviePoser movies={movies} />}
         {people && <PeoplePoster people={people} />}

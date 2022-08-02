@@ -24,19 +24,20 @@ function Hero({ movies }) {
 
             return (
               <div className="bg-blend-darken" key={id}>
-                <Image
-                  src={`${IMAGE_BASE}${backdrop_path || poster_path}`}
-                  alt={title}
-                  height={1080}
-                  width={1920}
-                  layout="responsive"
-                  className="absolute inset-0 h-full w-full object-contain"
-                  priority
-                />
+                <div className="relative h-screen">
+                  <Image
+                    src={`${IMAGE_BASE}${backdrop_path || poster_path}`}
+                    alt={title}
+                    layout="fill"
+                    className="absolute inset-0 h-full w-full object-contain"
+                    priority
+                    objectFit="cover"
+                  />
+                </div>
                 {/* overlay */}
                 <div className="absolute inset-0 bg-gray-900 opacity-50" />
 
-                <div className="flex h-full items-start justify-center absolute w-1/3 p-8 text-white tracking-widest top-0 flex-col left-28 space-y-5 shadow">
+                <div className="flex h-full items-start justify-center absolute lg:w-1/3 p-8 text-white tracking-widest top-0 flex-col lg:left-28 space-y-5 shadow">
                   <p className="font-thin text-xs -mb-5">{release_date}</p>
                   <h1 className="uppercase text-2xl md:text-6xl">
                     {original_title || title}

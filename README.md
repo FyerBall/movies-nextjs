@@ -2,24 +2,16 @@
 
 DEMO 👉🏻 [Here](https://nextjs-movies-seven.vercel.app/).
 
-NextJS application that uses TMDb API to get movies details
+A basic app to show the latest movies and popular ones.
 
-## Setup
-
-Get the code by cloning the repository using git
-
-```
-https://github.com/FyerBall/movies-nextjs.git
-```
-
-Open the terminal in the project directory and install the dependencies:
+## Project setup
 
 ```
 npm install
 ```
 
 - Create [TMDb](https://www.themoviedb.org/) API key from [here](https://developers.themoviedb.org/3/getting-started/introduction_)
-- Create a environment `variable(.env.local):`
+- Create an `environment variable(.env)`
 
 ```
 API_KEY=<API_KEY>
@@ -30,8 +22,6 @@ API_KEY=<API_KEY>
 ```
 $ npm run dev
 ```
-
-- Open `http://localhost:3000/` to browse through the website.
 
 ## Deployment
 

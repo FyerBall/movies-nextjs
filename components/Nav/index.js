@@ -14,7 +14,7 @@ function Header() {
               // checking if link is tagged as primary. if so then apply some additional stylings
               className={`${
                 nav.type === "primary" && "bg-rose p-2 rounded"
-              } capitalize text-xl`}
+              } capitalize`}
             >
               <Link href={nav.path}>{nav.name}</Link>
             </li>
