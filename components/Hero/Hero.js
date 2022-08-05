@@ -36,16 +36,17 @@ function Hero({ movies }) {
                 </div>
                 {/* overlay */}
                 <div className="absolute inset-0 bg-gray-900 opacity-50" />
+                <div className="container ">
+                  <div className="flex h-full items-start justify-center absolute lg:w-1/3 text-white tracking-widest top-0 flex-col space-y-5 shadow">
+                    <p className="font-thin text-xs -mb-5">{release_date}</p>
+                    <h1 className="uppercase text-2xl md:text-6xl">
+                      {original_title || title}
+                    </h1>
+                    <Rating rate={vote_average} variant="light" />
+                    <p className="">{overview}</p>
 
-                <div className="flex h-full items-start justify-center absolute lg:w-1/3 p-8 text-white tracking-widest top-0 flex-col lg:left-28 space-y-5 shadow">
-                  <p className="font-thin text-xs -mb-5">{release_date}</p>
-                  <h1 className="uppercase text-2xl md:text-6xl">
-                    {original_title || title}
-                  </h1>
-                  <Rating rate={vote_average} variant="light" />
-                  <p className="">{overview}</p>
-
-                  <Trailer id={id} name={title} />
+                    <Trailer id={id} name={title} />
+                  </div>
                 </div>
               </div>
             );

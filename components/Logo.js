@@ -4,9 +4,15 @@ import Link from "next/link.js";
 function Logo() {
   return (
     <div className="flex relative items-center gap-6 flex-1">
-      {/* LOGO */}
       <Link href="/">
-        <a className="text-2xl font-bold text-white">MovieBox</a>
+        <a>
+          <Image
+            src="/Logo.png"
+            alt="MovieBox Logo"
+            width="186px"
+            height="50px"
+          />
+        </a>
       </Link>
     </div>
   );
