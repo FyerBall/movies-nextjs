@@ -30,3 +30,12 @@ If you want to have production build run
 ```
 npm run build
 ```
+
+---
+
+### TODO
+
+- [ ] Add carousal for hero and display multiple featured movies
+- [ ] Use [Trakt](trakt.tv) to track what you're currently watching.
+- [ ] Create and add to lists
+- [ ] Get recommendations
